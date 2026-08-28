@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as MapRouteImport } from './routes/map'
+import { Route as MusicRouteImport } from './routes/music'
 import { Route as EntrySlugRouteImport } from './routes/entry.$slug'
 
 const IndexRoute = IndexRouteImport.update({
@@ -23,6 +24,11 @@ const MapRoute = MapRouteImport.update({
   path: '/map',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MusicRoute = MusicRouteImport.update({
+  id: '/music',
+  path: '/music',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EntrySlugRoute = EntrySlugRouteImport.update({
   id: '/entry/$slug',
   path: '/entry/$slug',
@@ -32,30 +38,34 @@ const EntrySlugRoute = EntrySlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/map': typeof MapRoute
+  '/music': typeof MusicRoute
   '/entry/$slug': typeof EntrySlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/map': typeof MapRoute
+  '/music': typeof MusicRoute
   '/entry/$slug': typeof EntrySlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/map': typeof MapRoute
+  '/music': typeof MusicRoute
   '/entry/$slug': typeof EntrySlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/map' | '/entry/$slug'
+  fullPaths: '/' | '/map' | '/music' | '/entry/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/map' | '/entry/$slug'
-  id: '__root__' | '/' | '/map' | '/entry/$slug'
+  to: '/' | '/map' | '/music' | '/entry/$slug'
+  id: '__root__' | '/' | '/map' | '/music' | '/entry/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   MapRoute: typeof MapRoute
+  MusicRoute: typeof MusicRoute
   EntrySlugRoute: typeof EntrySlugRoute
 }
 
@@ -75,6 +85,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MapRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/music': {
+      id: '/music'
+      path: '/music'
+      fullPath: '/music'
+      preLoaderRoute: typeof MusicRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/entry/$slug': {
       id: '/entry/$slug'
       path: '/entry/$slug'
@@ -88,6 +105,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   MapRoute: MapRoute,
+  MusicRoute: MusicRoute,
   EntrySlugRoute: EntrySlugRoute,
 }
 export const routeTree = rootRouteImport
