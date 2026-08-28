@@ -39,7 +39,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         <header className="sticky top-0 z-40 border-b border-border/60 bg-background/85 backdrop-blur-xl lg:hidden">
           <div className="flex items-center justify-between px-5 py-3.5">
             <Brand compact />
-            <Link to="/search" aria-label="Search the archive" className="rounded-full border border-border p-2 text-muted-foreground">
+            <Link to="/search" search={{ q: undefined }} aria-label="Search the archive" className="rounded-full border border-border p-2 text-muted-foreground">
               <Search className="size-4" strokeWidth={1.5} />
             </Link>
           </div>
