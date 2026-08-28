@@ -7,7 +7,7 @@ import { categories, entries } from "@/data/heritage";
 
 export const Route = createFileRoute("/search")({
   validateSearch: (search: Record<string, unknown>) => ({
-    q: typeof search.q === "string" ? search.q : "",
+    q: typeof search["q"] === "string" ? (search["q"] as string) : undefined,
   }),
   head: () => ({
     meta: [
@@ -28,7 +28,7 @@ export const Route = createFileRoute("/search")({
 });
 
 function SearchPage() {
-  const { q } = Route.useSearch();
+  const { q = "" } = Route.useSearch();
   const navigate = Route.useNavigate();
   const [category, setCategory] = useState("all");
 

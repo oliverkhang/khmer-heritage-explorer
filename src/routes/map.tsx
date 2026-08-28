@@ -41,7 +41,7 @@ const FILTERS = [
 
 function AtlasPage() {
   const [filter, setFilter] = useState<(typeof FILTERS)[number]["id"]>("all");
-  const [activeId, setActiveId] = useState(sites[0].id);
+  const [activeId, setActiveId] = useState(sites[0]!.id);
 
   const visible = useMemo(
     () =>
@@ -50,7 +50,7 @@ function AtlasPage() {
       ),
     [filter],
   );
-  const active = sites.find((s) => s.id === activeId)!;
+  const active = sites.find((s) => s.id === activeId) ?? sites[0]!;
 
   return (
     <AppShell>

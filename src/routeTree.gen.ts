@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as MapRouteImport } from './routes/map'
 import { Route as MusicRouteImport } from './routes/music'
+import { Route as SearchRouteImport } from './routes/search'
 import { Route as EntrySlugRouteImport } from './routes/entry.$slug'
 
 const IndexRoute = IndexRouteImport.update({
@@ -29,6 +30,11 @@ const MusicRoute = MusicRouteImport.update({
   path: '/music',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SearchRoute = SearchRouteImport.update({
+  id: '/search',
+  path: '/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EntrySlugRoute = EntrySlugRouteImport.update({
   id: '/entry/$slug',
   path: '/entry/$slug',
@@ -39,12 +45,14 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/map': typeof MapRoute
   '/music': typeof MusicRoute
+  '/search': typeof SearchRoute
   '/entry/$slug': typeof EntrySlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/map': typeof MapRoute
   '/music': typeof MusicRoute
+  '/search': typeof SearchRoute
   '/entry/$slug': typeof EntrySlugRoute
 }
 export interface FileRoutesById {
@@ -52,20 +60,22 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/map': typeof MapRoute
   '/music': typeof MusicRoute
+  '/search': typeof SearchRoute
   '/entry/$slug': typeof EntrySlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/map' | '/music' | '/entry/$slug'
+  fullPaths: '/' | '/map' | '/music' | '/search' | '/entry/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/map' | '/music' | '/entry/$slug'
-  id: '__root__' | '/' | '/map' | '/music' | '/entry/$slug'
+  to: '/' | '/map' | '/music' | '/search' | '/entry/$slug'
+  id: '__root__' | '/' | '/map' | '/music' | '/search' | '/entry/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   MapRoute: typeof MapRoute
   MusicRoute: typeof MusicRoute
+  SearchRoute: typeof SearchRoute
   EntrySlugRoute: typeof EntrySlugRoute
 }
 
@@ -92,6 +102,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MusicRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/search': {
+      id: '/search'
+      path: '/search'
+      fullPath: '/search'
+      preLoaderRoute: typeof SearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/entry/$slug': {
       id: '/entry/$slug'
       path: '/entry/$slug'
@@ -106,6 +123,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   MapRoute: MapRoute,
   MusicRoute: MusicRoute,
+  SearchRoute: SearchRoute,
   EntrySlugRoute: EntrySlugRoute,
 }
 export const routeTree = rootRouteImport
