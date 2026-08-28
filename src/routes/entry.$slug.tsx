@@ -67,7 +67,7 @@ function EntryReader() {
 
         <div className="surface-card mt-8 grid grid-cols-2 gap-px overflow-hidden bg-border/40 md:grid-cols-4">
           {[
-            ["Era", entry.era.split("·")[0].trim()],
+            ["Era", (entry.era.split("·")[0] ?? entry.era).trim()],
             ["Category", entry.categoryId],
             ["Media assets", `${entry.gallery.length + 1}`],
             ["Sources", `${entry.citations.length} verified`],
