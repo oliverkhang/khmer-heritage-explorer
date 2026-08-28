@@ -3,7 +3,7 @@ import { useState } from "react";
 import { BookMarked, MapPin, X } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { Badge, EntryCard, LicenseBadge, Page, SectionHeading } from "@/components/heritage";
-import { entries, entryById, entryBySlug } from "@/data/heritage";
+import { entryById, entryBySlug } from "@/data/heritage";
 import { LICENSE_LABEL, type MediaAsset } from "@/data/types";
 
 export const Route = createFileRoute("/entry/$slug")({
@@ -203,4 +203,3 @@ function EntryReader() {
   );
 }
 
-export const allEntries = entries;
