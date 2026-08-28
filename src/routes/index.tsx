@@ -26,7 +26,7 @@ export const Route = createFileRoute("/")({
 });
 
 function Discovery() {
-  const featured = entries[0];
+  const featured = entries[0]!;
   const [activeEra, setActiveEra] = useState("golden");
   const era = eras.find((e) => e.id === activeEra)!;
 

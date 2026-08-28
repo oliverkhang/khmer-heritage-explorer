@@ -3,7 +3,7 @@ import { useState } from "react";
 import { BookMarked, MapPin, X } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { Badge, EntryCard, LicenseBadge, Page, SectionHeading } from "@/components/heritage";
-import { entries, entryById, entryBySlug } from "@/data/heritage";
+import { entryById, entryBySlug } from "@/data/heritage";
 import { LICENSE_LABEL, type MediaAsset } from "@/data/types";
 
 export const Route = createFileRoute("/entry/$slug")({
@@ -67,7 +67,7 @@ function EntryReader() {
 
         <div className="surface-card mt-8 grid grid-cols-2 gap-px overflow-hidden bg-border/40 md:grid-cols-4">
           {[
-            ["Era", entry.era.split("·")[0].trim()],
+            ["Era", (entry.era.split("·")[0] ?? entry.era).trim()],
             ["Category", entry.categoryId],
             ["Media assets", `${entry.gallery.length + 1}`],
             ["Sources", `${entry.citations.length} verified`],
@@ -203,4 +203,3 @@ function EntryReader() {
   );
 }
 
-export const allEntries = entries;
